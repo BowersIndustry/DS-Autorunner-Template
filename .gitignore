@@ -1,0 +1,8 @@
+*.o
+*.d
+*.s
+*.map
+*.elf
+*.nds
+*.map
+*.h
