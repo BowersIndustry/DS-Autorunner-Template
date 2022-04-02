@@ -218,45 +218,47 @@ int main(void) {
 
 		if(Health > 0){
 			EnemyX -= Speed;
-		}
-		
-		if(PlayerJumpState == 0){
-			Gravity();
-		}
-		else if(PlayerJumpState == 1){
-			AntiGravity();
-			des.state = W_JUMP;
-		}
-		else if(pressed & KEY_TOUCH || pressed & KEY_A){
-			if(PlayerJumpState == 2){
-				PlayerJumpState = 1;
+
+			if(PlayerJumpState == 0){
+				Gravity();
 			}
-		}
-		else if(FramesInAir != 0){
-			if(PlayerJumpState == 4){
+			else if(PlayerJumpState == 1){
+				AntiGravity();
+				des.state = W_JUMP;
+			}
+			else if(pressed & KEY_TOUCH || pressed & KEY_A){
+				if(PlayerJumpState == 2){
+					PlayerJumpState = 1;
+				}
+			}
+			else if(FramesInAir != 0){
+				if(PlayerJumpState == 4){
+					InAir();
+				}
+			}
+			else if(PlayerJumpState == 4){
 				InAir();
 			}
-		}
-		else if(PlayerJumpState == 4){
-			InAir();
-		}
 
 
 
-		if(PlayerJumpState == 0){
-			if(PlayerY >= GroundPos){
-				PlayerJumpState = 2;
-				des.state = W_RIGHT;
-				PlayerY = GroundPos;
+			if(PlayerJumpState == 0){
+				if(PlayerY >= GroundPos){
+					PlayerJumpState = 2;
+					des.state = W_RIGHT;
+					PlayerY = GroundPos;
+				}
+			}
+			if(PlayerX >= 256 + 24){
+				PlayerX = -24;
+			}
+
+			if(EnemyX <= -16){
+				EnemyX = 256;
 			}
 		}
-		if(PlayerX >= 256 + 24){
-			PlayerX = -24;
-		}
-
-		if(EnemyX <= -16){
-			EnemyX = 256;
-		}
+		
+		
 
 
 		//Collision Stuff
