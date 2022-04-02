@@ -3,6 +3,5 @@
 *.s
 *.map
 *.elf
-*.nds
 *.map
 *.h
